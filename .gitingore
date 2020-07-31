@@ -1,8 +1,0 @@
-*.out
-.DS_Store
-._DS_Store
-input.txt
-output.txt
-*.out
-*.in
-*.o
