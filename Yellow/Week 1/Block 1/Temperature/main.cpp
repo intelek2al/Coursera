@@ -8,7 +8,7 @@ int main()
     vector<int> temper;
     vector<int> new_t;
     int n = 0;
-    float sum = 0;
+    double sum = 0;
 
     cin >> n;
     for (int i = 0; i < n; i++)
