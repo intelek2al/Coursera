@@ -76,7 +76,11 @@
         "string_view": "cpp",
         "typeinfo": "cpp",
         "xtree": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "concepts": "cpp",
+        "random": "cpp",
+        "xstddef": "cpp",
+        "xtr1common": "cpp"
     },
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true
