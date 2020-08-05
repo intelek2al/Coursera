@@ -74,7 +74,9 @@
         "new": "cpp",
         "ratio": "cpp",
         "string_view": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "xtree": "cpp",
+        "cassert": "cpp"
     },
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true

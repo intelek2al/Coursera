@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -9,6 +10,7 @@ int main()
 {
     int q;
     cin >> q;
+    stringstream ss;
 
     map<string, vector<string>> buses_to_stops, stops_to_buses;
 
@@ -39,15 +41,15 @@ int main()
             cin >> stop;
             if (stops_to_buses.count(stop) == 0)
             {
-                cout << "No stop" << endl;
+                ss << "No stop" << endl;
             }
             else
             {
                 for (const string &bus : stops_to_buses[stop])
                 {
-                    cout << bus << " ";
+                    ss << bus << " ";
                 }
-                cout << endl;
+                ss << endl;
             }
         }
         else if (operation_code == "STOPS_FOR_BUS")
@@ -57,16 +59,16 @@ int main()
             cin >> bus;
             if (buses_to_stops.count(bus) == 0)
             {
-                cout << "No bus" << endl;
+                ss << "No bus" << endl;
             }
             else
             {
                 for (const string &stop : buses_to_stops[bus])
                 {
-                    cout << "Stop " << stop << ": ";
+                    ss << "Stop " << stop << ": ";
                     if (stops_to_buses[stop].size() == 1)
                     {
-                        cout << "no interchange";
+                        ss << "no interchange";
                     }
                     else
                     {
@@ -74,11 +76,11 @@ int main()
                         {
                             if (bus != other_bus)
                             {
-                                cout << other_bus << " ";
+                                ss << other_bus << " ";
                             }
                         }
                     }
-                    cout << endl;
+                    ss << endl;
                 }
             }
         }
@@ -87,22 +89,22 @@ int main()
 
             if (buses_to_stops.empty())
             {
-                cout << "No buses" << endl;
+                ss << "No buses" << endl;
             }
             else
             {
                 for (const auto &bus_item : buses_to_stops)
                 {
-                    cout << "Bus " << bus_item.first << ": ";
+                    ss << "Bus " << bus_item.first << ": ";
                     for (const string &stop : bus_item.second)
                     {
-                        cout << stop << " ";
+                        ss << stop << " ";
                     }
-                    cout << endl;
+                    ss << endl;
                 }
             }
         }
     }
-
+    cout << ss.str();
     return 0;
 }
