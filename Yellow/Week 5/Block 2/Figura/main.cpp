@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iomanip>
 #include <memory>
+#include <cmath>
 
 using namespace std;
 
@@ -38,7 +39,7 @@ public:
 	}
 	double Area() const override
 	{
-		return _p * (_p - _a) * (_p - _b) * (_p - _c);
+		return sqrt(_p * (_p - _a) * (_p - _b) * (_p - _c));
 	}
 
 private:
@@ -122,7 +123,8 @@ shared_ptr<Figure> CreateFigure(istream &is)
 		is >> r;
 		return make_shared<Circle>(type, r);
 	}
-	return make_shared<Rect>();
+	return NULL;
+	// return make_shared<Figure>("Fig");
 }
 
 int main()
