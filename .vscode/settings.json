@@ -80,7 +80,8 @@
         "concepts": "cpp",
         "random": "cpp",
         "xstddef": "cpp",
-        "xtr1common": "cpp"
+        "xtr1common": "cpp",
+        "deque": "cpp"
     },
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true
