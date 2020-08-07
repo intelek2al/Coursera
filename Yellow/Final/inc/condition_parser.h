@@ -1,9 +1,6 @@
 #pragma once
 
-#include "node.h"
-
-#include <memory>
-#include <iostream>
+#include "main.h"
 
 using namespace std;
 
@@ -25,4 +22,4 @@ enum class Comparison
 
 shared_ptr<Node> ParseCondition(istream &is);
 
-void TestParseCondition();
+// void TestParseCondition();

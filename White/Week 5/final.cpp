@@ -117,6 +117,7 @@ bool operator<(const Date &lhs, const Date &rhs)
 		return lhs.GetMonth() < rhs.GetMonth();
 	}
 	return lhs.GetYear() < rhs.GetYear();
+	return tuple({})
 }
 
 class Database
