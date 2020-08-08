@@ -1,5 +1,21 @@
-#include "main.h"
+#include <memory>
+#include <iostream>
+#include <map>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+#include <stdexcept>
+#include <set>
+#include <sstream>
 #include <tuple>
+#include <functional>
+#include "database.h"
+#include "main.h"
+#include "date.h"
+#include "condition_parser.h"
+#include "node.h"
+#include "token.h"
+#include "operators.h"
 
 using namespace std;
 
@@ -37,17 +53,9 @@ istream &operator>>(istream &stream, Date &date)
     return stream;
 }
 
-ostream &operator<<(ostream &stream, const Date &date)
-{
-    stream << setw(4) << setfill('0') << date.GetYear() << '-'
-        << setw(2) << setfill('0') << date.GetMonth() << '-'
-        << setw(2) << setfill('0') << date.GetDay();
-    return stream;
-}
-
 ostream &operator<<(ostream &stream, vector<string> t)
 {
-    for (int i = 0; i < t.size(); i++)
+    for (size_t i = 0; i < t.size(); i++)
     {
         stream << t[i];
         if (i + 1 != t.size())
@@ -56,22 +64,28 @@ ostream &operator<<(ostream &stream, vector<string> t)
     return stream;
 }
 
-bool operator<(const Date &lhs, const Date &rhs) {
+bool operator<(const Date &lhs, const Date &rhs)
+{
     return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) < make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
 }
 
-bool operator<=(const Date &lhs, const Date &rhs) {
-    return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) < make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
+bool operator<=(const Date &lhs, const Date &rhs)
+{
+    return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) <= make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
 }
-bool operator==(const Date &lhs, const Date &rhs) {
-    return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) < make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
+bool operator==(const Date &lhs, const Date &rhs)
+{
+    return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) == make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
 }
-bool operator>=(const Date &lhs, const Date &rhs) {
-    return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) < make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
+bool operator>=(const Date &lhs, const Date &rhs)
+{
+    return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) >= make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
 }
-bool operator>(const Date &lhs, const Date &rhs) {
-    return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) < make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
+bool operator>(const Date &lhs, const Date &rhs)
+{
+    return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) > make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
 }
-bool operator!=(const Date &lhs, const Date &rhs) {
-    return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) < make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
+bool operator!=(const Date &lhs, const Date &rhs)
+{
+    return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) != make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
 }

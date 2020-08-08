@@ -1,9 +1,9 @@
 #pragma once
 
-#include "main.h"
+#include <iostream>
+#include <sstream>
 
 using namespace std;
-
 
 class Date
 {
@@ -20,3 +20,6 @@ private:
     int month;
     int day;
 };
+
+Date ParseDate(istream& date_stream);
+ostream &operator<<(ostream &stream, const Date &date);

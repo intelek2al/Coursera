@@ -1,10 +1,28 @@
 #include "condition_parser.h"
-// #include "test_runner.h"
+#include "test_runner.h"
+#include <memory>
+#include <iostream>
+#include <map>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+#include <stdexcept>
+#include <set>
+#include <sstream>
+#include <tuple>
+#include <functional>
+#include "database.h"
+#include "main.h"
+#include "date.h"
+#include "condition_parser.h"
+#include "node.h"
+#include "token.h"
+#include "operators.h"
 
 #include <sstream>
 using namespace std;
 
-/*void TestParseCondition() {
+void TestParseCondition() {
   {
     istringstream is("date != 2017-11-18");
     shared_ptr<Node> root = ParseCondition(is);
@@ -75,4 +93,4 @@ using namespace std;
     Assert(!root->Evaluate({2016, 1, 1}, "event"), "Parse condition 29");
     Assert(root->Evaluate({2016, 1, 2}, "event"), "Parse condition 30");
   }
-}*/
+}

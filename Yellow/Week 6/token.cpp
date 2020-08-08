@@ -1,4 +1,4 @@
-#include "main.h"
+#include "token.h"
 
 using namespace std;
 

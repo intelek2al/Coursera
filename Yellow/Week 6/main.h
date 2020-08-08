@@ -10,15 +10,16 @@
 #include <set>
 #include <sstream>
 #include <tuple>
+#include <functional>
 
 #include "date.h"
-#include "condition_parser.h"
-#include "database.h"
-#include "node.h"
-#include "token.h"
-#include "operators.h"
+// #include "condition_parser.h"
+// #include "database.h"
+// #include "node.h"
+// #include "token.h"
+// #include "operators.h"
+// #include "main.h"
 
 using namespace std;
 
 string ParseEvent(istream &is);
-Date ParseDate(istringstream &date_stream);

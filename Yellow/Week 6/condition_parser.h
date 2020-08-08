@@ -1,18 +1,19 @@
 #pragma once
 
 #include "main.h"
-// #include "node.h"
-// #include "date.h"
-// #include <memory>
-// #include <iostream>
+#include "database.h"
+#include "token.h"
+#include "operators.h"
+#include "node.h"
 
 using namespace std;
 
-// void TestParseCondition();
+void TestParseCondition();
 
 class Node;
 
-enum class Comparison {
+enum class Comparison
+{
     Less,
     LessOrEqual,
     Greater,
@@ -21,11 +22,10 @@ enum class Comparison {
     NotEqual
 };
 
-enum class LogicalOperation {
+enum class LogicalOperation
+{
     Or,
     And
 };
 
-
-shared_ptr<Node> ParseCondition(istream& is);
-
+shared_ptr<Node> ParseCondition(istream &is);

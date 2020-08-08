@@ -1,5 +1,22 @@
 // #include "n  ode.h"
+#include <memory>
+#include <iostream>
+#include <map>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+#include <stdexcept>
+#include <set>
+#include <sstream>
+#include <tuple>
+#include <functional>
+#include "database.h"
 #include "main.h"
+#include "date.h"
+#include "condition_parser.h"
+#include "node.h"
+#include "token.h"
+#include "operators.h"
 
 using namespace std;
 
