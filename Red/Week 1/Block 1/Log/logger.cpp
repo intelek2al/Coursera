@@ -3,25 +3,42 @@
 #include <string>
 using namespace std;
 
-class Logger {
+class Logger
+{
 public:
-  explicit Logger(ostream& output_stream) : os(output_stream) {
+  explicit Logger(ostream &output_stream) : os(output_stream)
+  {
   }
 
   void SetLogLine(bool value) { log_line = value; }
-  void SetLogFile(bool value) { log_file= value; }
+  void SetLogFile(bool value) { log_file = value; }
 
-  void Log(const string& message);
+  void Log(const string &message, const string &file, const int line)
+  {
+    if (log_file)
+    {
+      os << file;
+      if (log_line)
+        os << ":" << line << " ";
+      else
+        os << ' ';
+    }
+    else if (log_line)
+      os << "Line " << line << " ";
+    os << message << endl;
+  }
 
 private:
-  ostream& os;
+  ostream &os;
   bool log_line = false;
   bool log_file = false;
+  string log;
 };
 
-#define LOG(logger, message) ...
+#define LOG(logger, message) ((logger).Log((message), __FILE__, __LINE__))
 
-void TestLog() {
+void TestLog()
+{
 /* Для написания юнит-тестов в этой задаче нам нужно фиксировать конкретные
  * номера строк в ожидаемом значении (см. переменную expected ниже). Если
  * мы добавляем какой-то код выше функции TestLog, то эти номера строк меняются,
@@ -54,7 +71,8 @@ void TestLog() {
   ASSERT_EQUAL(logs.str(), expected);
 }
 
-int main() {
+int main()
+{
   TestRunner tr;
   RUN_TEST(tr, TestLog);
 }

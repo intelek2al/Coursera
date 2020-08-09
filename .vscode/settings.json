@@ -81,7 +81,9 @@
         "random": "cpp",
         "xstddef": "cpp",
         "xtr1common": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "xhash": "cpp",
+        "list": "cpp"
     },
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true
