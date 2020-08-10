@@ -23,14 +23,10 @@ public:
 
     //  virtual methods
 
-    virtual void Walk(const string &destination) const = 0;
-    virtual void Learn() const {}
-    virtual void SingSong() const {}
-    virtual void Teach() const {}
-    virtual void Check(const Human &pers) const
+    virtual void Walk(const string &destination = "somewhere") const
     {
-        cout << "Someone checks " << pers.GetProf() << " called " << pers.GetName() << endl;
-    }
+        cout << "Someone walks" << destination << endl;
+    };
     virtual ~Human() = default;
 
 protected:
@@ -41,12 +37,9 @@ protected:
 class Student : public Human
 {
 public:
-    Student(const string &name, const string &favouriteSong) : Human("Student", name)
-    {
-        FavouriteSong = favouriteSong;
-    }
+    Student(const string &name, const string &favouriteSong) : Human("Student", name), FavouriteSong(favouriteSong) {}
 
-    void Learn() const override
+    void Learn() const
     {
         InitAction();
         cout << _name << " learns" << endl;
@@ -66,18 +59,15 @@ public:
     }
 
 public:
-    string FavouriteSong;
+    const string FavouriteSong;
 };
 
 class Teacher : public Human
 {
 public:
-    Teacher(const string &name, const string &subject) : Human("Teacher", name)
-    {
-        Subject = subject;
-    }
+    Teacher(const string &name, const string &subject) : Human("Teacher", name), Subject(subject) {}
 
-    void Teach() const override
+    void Teach() const
     {
         InitAction();
         cout << " teaches: " << Subject << endl;
@@ -90,7 +80,7 @@ public:
     }
 
 public:
-    string Subject;
+    const string Subject;
 };
 
 class Policeman : public Human
@@ -98,7 +88,7 @@ class Policeman : public Human
 public:
     Policeman(const string &name) : Human("Policeman", name) {}
 
-    void Check(const Human &pers) const override
+    void Check(const Human &pers) const
     {
         InitAction();
         cout << " checks " << pers.GetProf() << ". " << pers.GetProf() << "'s name is: " << pers.GetName() << endl;
