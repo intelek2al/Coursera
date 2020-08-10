@@ -9,7 +9,7 @@ using namespace std;
 
 // int main()
 // {
-//   int UNIQ_ID = 0;
+//   int UNIQ_ID(__LINE) = 0;
 //   string UNIQ_ID = "hello";
 //   vector<string> UNIQ_ID = {"hello", "world"};
 //   vector<int> UNIQ_ID = {1, 2, 3, 4};
