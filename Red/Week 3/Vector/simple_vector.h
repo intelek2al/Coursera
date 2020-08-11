@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <iostream>
 #include <cstdlib>
 
 using namespace std;
@@ -24,10 +25,10 @@ public:
 	}
 	~SimpleVector()
 	{
-		if (capacity == 1)
-			delete start;
-		else
-			delete[] start;
+		// if (capacity == 1)
+		// 	delete start;
+		// else
+		delete[] start;
 		start = nullptr;
 		finish = nullptr;
 		size = 0;
@@ -61,27 +62,40 @@ public:
 		if (capacity == 0)
 		{
 			capacity = 1;
+			T *p = new T[capacity];
+			for (size_t i = 0; i < size; i++) {
+				p[i] = start[i];
+			}
+			// copy(start, finish, p);
+			finish = p + size;
+			// if (capacity == 1)
+			// 	delete start;
+			// else
+			delete[] start;
+			start = p;
 		}
 		else if (capacity == size)
 		{
 			capacity *= 2;
-		}
-		{
 			T *p = new T[capacity];
-			// for (size_t i = 0; i < size; i++) {
-			// 	p[i] = start[i];
-			// }
-			copy(start, finish, p);
+			for (size_t i = 0; i < size; i++) {
+				p[i] = start[i];
+			}
+			// copy(start, finish, p);
 			finish = p + size;
-			if (capacity == 1)
-				delete start;
-			else
-				delete[] start;
+			// if (capacity == 1)
+			// 	delete start;
+			// else
+			delete[] start;
 			start = p;
 		}
+		// cout << "asdasd" << endl;
 		size++;
+		// cout << "asdasd" << endl;
 		*finish = value;
+		// cout << "asdasd" << endl;
 		finish++;
+		// cout << "asdasd" << endl;
 	}
 
 private:
