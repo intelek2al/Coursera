@@ -40,6 +40,13 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "utility": "cpp",
-        "array": "cpp"
+        "array": "cpp",
+        "__node_handle": "cpp",
+        "chrono": "cpp",
+        "__memory": "cpp",
+        "optional": "cpp",
+        "random": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp"
     }
 }
