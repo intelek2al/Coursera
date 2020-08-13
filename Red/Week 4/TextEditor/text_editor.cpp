@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <string_view>
+#include <algorithm>
 #include <list>
 #include <deque>
 #include "test_runner.h"
@@ -47,7 +48,7 @@ public:
 	{
 
 		// string left = text.substr(0, cursor);
-		tokens = min(tokens, distance(cursor, text.end()));
+		tokens = min(tokens, static_cast<size_t>(distance(cursor, text.end())));
 		buffer = tokens > 0 ? SubStrList(cursor, text.end(), tokens) : make_pair(text.end(), text.end());
 		// string right = (cursor + tokens < text.size()) ? ) : "";
 
@@ -60,7 +61,7 @@ public:
 	}
 	void Copy(size_t tokens = 1)
 	{
-		tokens = min(tokens, text.end() - cursor);
+		tokens = min(tokens, static_cast<size_t>(distance(cursor, text.end())));
 		buffer = tokens > 0 ? SubStrList(cursor, text.end(), tokens) : {};
 		// cout << "-------------------------" << endl
 		// 	 << "Copied: " << buffer << "$" << endl
