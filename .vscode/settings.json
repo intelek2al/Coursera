@@ -48,6 +48,10 @@
         "random": "cpp",
         "ratio": "cpp",
         "system_error": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "__hash_table": "cpp",
+        "__tree": "cpp",
+        "queue": "cpp",
+        "cstdint": "cpp"
     }
 }
