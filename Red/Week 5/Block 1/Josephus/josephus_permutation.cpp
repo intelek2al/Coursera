@@ -1,43 +1,60 @@
 #include "test_runner.h"
+#include "profile.h"
 
 #include <cstdint>
 #include <iterator>
 #include <numeric>
 #include <vector>
+#include <array>
 #include <list>
 
 using namespace std;
 
+template <typename RandomIt, typename Container>
+auto MoveIter(Container &container, RandomIt it, size_t step)
+{
+	for (size_t i = 1; i < step; i++)
+	{
+		it = (next(it) == container.end()) ? container.begin() : next(it);
+	}
+	return it;
+}
 template <typename RandomIt>
 void MakeJosephusPermutation(RandomIt first, RandomIt last, uint32_t step_size)
 {
 	list<typename RandomIt::value_type> pool;
 	move(first, last, back_inserter(pool));
-	size_t cur_pos = 0;
 	auto pos = pool.begin();
 	while (!pool.empty())
 	{
-		*(first++) = move(pool[cur_pos]);
-		pool.erase(cur_pos);
-		if (pool.empty())
+		// cout << "asdasd" << endl;
+		*(first++) = move(*pos);
+		if (pool.size() <= 1)
 		{
 			break;
 		}
-		cur_pos = (cur_pos + step_size - 1) % pool.size();
+		auto next_pos = (next(pos) == pool.end()) ? pool.begin() : next(pos);
+		pool.erase(pos);
+		pos = next_pos;
+		pos = MoveIter(pool, pos, step_size);
 	}
 }
 
 // template <typename RandomIt>
 // void MakeJosephusPermutation(RandomIt first, RandomIt last, uint32_t step_size)
 // {
-// 	auto it = first;
-// 	list<typename RandomIt::value_type> cyrcl;
-// 	size_t max_iter = last - first;
-// 	for (size_t i = 0; i < max_iter; i++)
-// 		cyrcl.push_back(move(*it));
-// 	size_t cursor = 0;
-// 	for (size_t i = 0; i < max_iter; i++)
+// 	vector<typename RandomIt::value_type> pool;
+// 	size_t cur_pos = 0;
+// 	move(first, last, back_inserter(pool));
+// 	while (!pool.empty())
 // 	{
+// 		*(first++) = move(pool[cur_pos]);
+// 		pool.erase(pool.begin() + cur_pos);
+// 		if (pool.empty())
+// 		{
+// 			break;
+// 		}
+// 		cur_pos = (cur_pos + step_size - 1) % pool.size();
 // 	}
 // }
 
@@ -51,12 +68,14 @@ vector<int> MakeTestVector()
 void TestIntVector()
 {
 	const vector<int> numbers = MakeTestVector();
+	// {
+	// 	vector<int> numbers_copy = numbers;
+	// 	MakeJosephusPermutation(begin(numbers_copy), end(numbers_copy), 1);
+	// 	ASSERT_EQUAL(numbers_copy, numbers);
+	// }
 	{
-		vector<int> numbers_copy = numbers;
-		MakeJosephusPermutation(begin(numbers_copy), end(numbers_copy), 1);
-		ASSERT_EQUAL(numbers_copy, numbers);
-	}
-	{
+		cout << "start" << endl;
+		LOG_DURATION("Test Max: ");
 		vector<int> numbers_copy = numbers;
 		MakeJosephusPermutation(begin(numbers_copy), end(numbers_copy), 3);
 		ASSERT_EQUAL(numbers_copy, vector<int>({0, 3, 6, 9, 4, 8, 5, 2, 7, 1}));
