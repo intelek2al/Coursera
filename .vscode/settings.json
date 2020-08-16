@@ -52,6 +52,26 @@
         "__hash_table": "cpp",
         "__tree": "cpp",
         "queue": "cpp",
-        "cstdint": "cpp"
+        "cstdint": "cpp",
+        "__errc": "cpp",
+        "__mutex_base": "cpp",
+        "__string": "cpp",
+        "__threading_support": "cpp",
+        "__tuple": "cpp",
+        "cctype": "cpp",
+        "cmath": "cpp",
+        "complex": "cpp",
+        "cstdarg": "cpp",
+        "cstdio": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "mutex": "cpp",
+        "numeric": "cpp",
+        "typeinfo": "cpp",
+        "future": "cpp"
     }
 }
